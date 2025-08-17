@@ -1,5 +1,6 @@
+const userGuess = document.getElementsByClassName("user-guess")
 
-
+console.log(userGuess);
 
 
 
