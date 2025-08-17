@@ -5,11 +5,16 @@
 }
 
 body{
-    background-color: rgb(40, 40, 40);
-
+    background-color: rgb(21, 21, 21);
+    display: flex;
 }
 
-
+.container{
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    min-height: 400px;
+}
 
 
 
