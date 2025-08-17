@@ -1,11 +1,15 @@
-const userGuess = document.getElementsByClassName("user-guess")
+const userGuessid = document.getElementById("user-guess")
 
-console.log(userGuess);
-
-
+const guessBTN = document.getElementById("guess-btn")
 
 
 
+
+
+guessBTN.addEventListener("click", function() {
+console.log(userGuessid.value);    
+
+})
 
 
 
