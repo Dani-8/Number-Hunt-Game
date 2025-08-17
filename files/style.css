@@ -33,6 +33,8 @@ body{
 
 p{
     color: rgb(138, 138, 138);
+    text-align: center;
+    /* white-space: nowrap; */
 }
 
 
@@ -81,6 +83,11 @@ button{
     background-color: rgb(25, 69, 228);
 }
 .reset-btn{
+    background-color: rgb(228, 25, 93);
+    /* display: none; */
+}
+
+.hidden{
     display: none;
 }
 
@@ -88,8 +95,29 @@ button{
 
 
 
+.display-msg{
+    margin-top: 20px;
+    color: rgb(25, 69, 228);
+    font-size: 16px;
+}
 
 
+.green {
+    color: rgb(1, 165, 12); 
+}
+
+.red {
+    color: rgb(253, 45, 45);
+}
+
+
+
+
+.score{
+    margin-top: 20px;
+    font-size: 15px;
+    color: black;
+}
 
 
 
