@@ -89,6 +89,10 @@ body {
     background: linear-gradient(135deg, #f093fb, #f5576c);
 }
 
+.version-3 {
+    background: linear-gradient(135deg, #f9b784, #f57c40);
+}
+
 .game-description {
     font-size: 0.9rem;
     opacity: 0.9;
