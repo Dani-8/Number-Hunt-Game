@@ -1,8 +1,8 @@
 let targetNum
-// let minRange = +prompt("Guess the MinRange Number.....")
-// let maxRange = +prompt("Guess the MaxRange Number.....")
-let minRange = 1
-let maxRange = 5
+let minRange = +prompt("The Min Number.....")
+let maxRange = +prompt("The Max Number.....")
+// let minRange = 1
+// let maxRange = 5
 let gameActive = false
 
 let userScore = 0
@@ -90,8 +90,6 @@ function handleGame(){
         if(computerGuess === targetNum){
             computerScore++
             displayMSG(`Target: ${targetNum}: Computer guessed ${computerGuess}! Correct! Computer Wins!...`, "won")
-            endGame()
-            return
         }else{
             displayMSG(`Target: ${targetNum}: Computer guessed ${computerGuess}. Too ${computerGuess < targetNum ? "low" : "high" }`, "lost")
         }

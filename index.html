@@ -5,31 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Battle Of Numbers</title>
 
-    <link rel="stylesheet" href="files/style.css">
+    <link rel="stylesheet" href="assets/files/css.css">
 </head>
 <body>
     
 
-    <div class="container">
-        <h1>Guess The Number!</h1>
+    <div class="welcome-container">
+        <div class="number-icon">🎯</div>
+        <h1 class="welcome-title">Number Guessing Game</h1>
 
-        <p id="guess-range"></p>
-
-
-        <input type="number" class="user-guess" id="user-guess" placeholder="Your Number">
-
-
-        <button class="guess-btn" id="guess-btn">Guess</button>
-
-
-        <button class="reset-btn hidden" id="reset-btn">Play Again</button>
-
-        <p class="display-msg" id="display-msg"></p>
-
-
-        <p id="score" class="score"></p>
+        <p class="welcome-subtitle">
+            Welcome! Choose your preferred game interface and test your guessing skills. 
+            Both versions offer the same exciting challenge with different visual styles.
+        </p>
+        
+        <div class="game-options">
+            <button class="game-option version-1">
+                <a href="assets/Games/G1/index.html">
+                    🎮 Game Version 1
+                    <div class="game-description">Classic Interface</div>
+                </a>
+            </button>
+            
+            <button class="game-option version-2" >
+                <a href="assets/Games/G2/index.html">
+                    ✨ Game Version 2  
+                    <div class="game-description">Modern Interface</div>
+                </a>
+            </button>
+        </div>
     </div>
 
-    <script src="files/app.js"></script>
+
+    <script src="assets/files/js.js"></script>
 </body>
 </html>
