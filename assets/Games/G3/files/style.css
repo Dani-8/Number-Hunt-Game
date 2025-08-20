@@ -17,7 +17,23 @@ body{
 }
 
 
+.container{
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    height: 400px;
+    /* width: 400px; */
+    border-radius: 20px;
 
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+
+    text-align: center;
+
+}
 
 
 
