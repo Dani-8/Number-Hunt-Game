@@ -176,17 +176,19 @@ body{
     font-size: 18PX;
     font-weight: 700;
 }
-.info{
+.msg-box p.info{
     color: rgb(27, 99, 222);
 }
-.success{
+.msg-box p.success{
     color: rgb(51, 175, 10);
 }
-.error{
+.msg-box p.error{
     color: rgb(194, 13, 13);
 }
 
-
+.highlight{
+    color: rgb(53, 53, 53);
+}
 
 
 .attempt-box{

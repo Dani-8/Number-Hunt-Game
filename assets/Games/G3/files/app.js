@@ -39,7 +39,12 @@ let newGameBtn = document.getElementById("new-game-btn")
 function startGame() {
     userScore = 0
     compScore = 0
-    currentRound = 0
+    currentRound = 0    
+    startNewRound()
+    updateScoreDisplays()
+    showMessage("Let's Start the Game!", "info")
+    userGuessInput.disabled = false
+    guessBtn.disabled = false
 
 }
 
@@ -63,11 +68,22 @@ function generateRandomNumber(min, max) {
  */
 
 function showMessage(msg, type){
-    messageBox.textContent = msg
+    messageBox.innerHTML = msg
     messageBox.className = type
 }
 
 
+
+
+// CONTROL BUTTONS 
+guessBtn.addEventListener("click", handleGuess);
+newGameBtn.addEventListener("click", startGame);
+
+userGuessInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        handleGuess();
+    }
+});
 
 
 /**
@@ -75,7 +91,7 @@ function showMessage(msg, type){
  * SETS NEW RANGE, RESETS ATTEMPTS & GENERATES A NEW TARGET NUMBER
  */
 
-function startNewGame(){
+function startNewRound(){
     currentRound++
     roundOver = false
     userAttempts = 3
@@ -100,6 +116,7 @@ function startNewGame(){
     }
 
     targetNumber = generateRandomNumber(minRange, maxRange)
+    updateDisplays()
     showMessage(`Guess a Number between ${minRange} and ${maxRange}.`, "info")
 }
 
@@ -109,10 +126,16 @@ function startNewGame(){
  * HANDLE THE USER'S & COMPUTER'S GUESSES
  */
 function handleGuess() {
+    if(roundOver){
+        showMessage("The round is over. Start a new round.", "info")
+        return
+    }
+
+
     // --- USER'S TURN ---
     const userGuess = parseInt(userGuessInput.value)
-
-    if(isNan(userGuess) || userGuess < minRange || userGuess . maxRange){
+    
+    if(isNaN(userGuess) || userGuess < minRange || userGuess > maxRange){
         showMessage(`Please enter a valid number between ${minRange} and ${maxRange}`, "error")
         return
     }
@@ -120,15 +143,18 @@ function handleGuess() {
     if(userAttempts > 0){
         userAttempts--
         userAttemptDisplay.textContent = userAttempts
+        targetNumber = generateRandomNumber(minRange, maxRange)
+
 
         if(userGuess === targetNumber){
             userScore++
-            showMessage(`Congratulations! <br> Target Number: ${targetNumber} | You Guessed: ${userGuess} <br> You guessed the correct number.`, "success")
+            showMessage(`Congratulations! <br> <span class="highlight"> Target Number: ${targetNumber} | You Guessed: ${userGuess} </span> <br> You guessed the correct number.</span>`, "success")
             roundOver = true
         }else if (userGuess < targetNumber){
-            showMessage(`Target Number: ${targetNumber} | You Guessed: ${userGuess} <br> Your guess is too low. Try again!`, "info")
+            showMessage(`<span class="highlight"> Target Number: ${targetNumber} | You Guessed: ${userGuess} </span> <br> Your guess is too low. Try again!`, "info")
+            
         }else{
-            showMessage(`Target Number: ${targetNumber} | You Guessed: ${userGuess} <br> Your guess is too high. Try again!`, "info")
+            showMessage(`<span class="highlight"> Target Number: ${targetNumber} | You Guessed: ${userGuess} </span> <br> Your guess is too high. Try again!`, "info")
         }
     }else{
         showMessage("You have no Attempts left for this round!", "error")
@@ -139,6 +165,7 @@ function handleGuess() {
     // COMPUTER ONLY MAKES A GUESS IF USER HASNT WON THE ROUND:
     if(!roundOver && compAttempts > 0){
         // CompGuess
+        const compGuess = generateRandomNumber(minRange, maxRange)
         compAttempts--
         compAttemptDisplay.textContent = compAttempts
 
@@ -146,17 +173,17 @@ function handleGuess() {
         setTimeout(() => {      //Delay before Computer guess
             if(compGuess === targetNumber){
                 compScore++
-                showMessage(`Congratulations! <br> Target Number: ${targetNumber} | Computer Guessed: ${compGuess} <br> Computer guessed the correct number.`, "success")
+                showMessage(`Congratulations! <br> <span class="highlight"> Target Number: ${targetNumber} | Computer Guessed: ${compGuess} </span> <br> Computer guessed the correct number.`, "success")
                 roundOver = true
             }else if(compGuess < targetNumber){
-                showMessage(`Target Number: ${targetNumber} | Computer Guessed: ${compGuess} <br> Computer's guess is too low.`, "info")
+                showMessage(`<span class="highlight"> Target Number: ${targetNumber} | Computer Guessed: ${compGuess} </span> <br> Computer's guess is too low.`, "info")
             }else{
-                showMessage(`Target Number: ${targetNumber} | Computer Guessed: ${compGuess} <br> Computer's guess is too high.`, "info")
+                showMessage(`<span class="highlight"> Target Number: ${targetNumber} | Computer Guessed: ${compGuess} </span> <br> Computer's guess is too high.`, "info")
             }
-            
+            checkRoundOver()
         }, 1000);      //1 Second Delay!!!
     }else{
-        // -----------
+        checkRoundOver()        // CHECK IF ROUND OVER IF COMPUTER DIDNT GUESS
     }
 
 
@@ -189,7 +216,7 @@ function checkRoundOver(){
 
         setTimeout(() => {
             if(currentRound < 3){
-                startNewGame();
+                startNewRound();
             }else{
                 endGmame();
             }
@@ -201,7 +228,7 @@ function checkRoundOver(){
         
         setTimeout(() => {
             if(currentRound < 3){
-                startNewGame();
+                startNewRound();
             }else{
                 endGmame();
             }
