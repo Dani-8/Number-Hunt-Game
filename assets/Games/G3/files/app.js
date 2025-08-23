@@ -11,6 +11,8 @@ let targetNumber = 0
 
 let minRange = 1
 let maxRange = 5
+// let minRange = +prompt("Enter minimum range:")
+// let maxRange = +prompt("Enter maximum range:")
 
 
 // DISPLAY ELEMENTS
@@ -27,6 +29,11 @@ let userGuessInput = document.getElementById("user-input")
 let guessBtn = document.getElementById("guess-btn")
 let newGameBtn = document.getElementById("new-game-btn")
 
+
+let modal = document.getElementById("modal")
+let modalTitle = document.getElementById("modal-title")
+let modalMessage = document.getElementById("modal-message")
+let modalCloseBtn = document.getElementById("modal-btn")
 
 // ---------------------------------------------------------------------
 // ---------------------------------------------------------------------
@@ -78,6 +85,11 @@ function showMessage(msg, type){
 // CONTROL BUTTONS 
 guessBtn.addEventListener("click", handleGuess);
 newGameBtn.addEventListener("click", startGame);
+
+modalCloseBtn.addEventListener("click", () => {
+    modal.classList.add("hidden");
+    startGame();
+});
 
 userGuessInput.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
@@ -244,6 +256,34 @@ function updateDisplays() {
     userAttemptDisplay.textContent = userAttempts
     compAttemptDisplay.textContent = compAttempts
     rangeMsgDisplay.textContent = `Guess a Number between ${minRange} - ${maxRange}`
+}
+
+
+
+
+/**
+ * END THE ENTIRE GAME & DISPLAY THE FINAL RESULT
+ */
+function endGmame(){
+    let finalMessage = ""
+
+    if(userScore > compScore){
+        finalMessage = `🎉 Congratulations! You win the game with ${userScore} points!`;
+        modalTitle.textContent = "YOU WON!"
+    }else if(compScore > userScore){
+        finalMessage = `😔 Computer wins the game with ${compScore} points! Better luck next time!`;
+        modalTitle.textContent = "COMPUTER WON!"
+    }else{
+        finalMessage = `🤝 It's a tie! Both you and the computer have ${userScore} points.`;
+        modalTitle.textContent = "IT'S A TIE!"
+    }
+
+
+    modalMessage.textContent = finalMessage;
+    modal.classList.remove("hidden");
+
+    userGuessInput.disabled = true;
+    guessBtn.disabled = true;
 }
 
 
