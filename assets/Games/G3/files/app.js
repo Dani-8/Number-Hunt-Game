@@ -156,7 +156,9 @@ function handleGuess() {
         userAttempts--
         userAttemptDisplay.textContent = userAttempts
         targetNumber = generateRandomNumber(minRange, maxRange)
-
+        userGuessInput.value = ""
+        userGuessInput.focus() 
+        
 
         if(userGuess === targetNumber){
             userScore++
@@ -268,13 +270,13 @@ function endGmame(){
     let finalMessage = ""
 
     if(userScore > compScore){
-        finalMessage = `🎉 Congratulations! You win the game with ${userScore} points!`;
+        finalMessage = `🎉  Congratulations! You win the game with ${userScore} points!`;
         modalTitle.textContent = "YOU WON!"
     }else if(compScore > userScore){
-        finalMessage = `😔 Computer wins the game with ${compScore} points! Better luck next time!`;
+        finalMessage = `😔  Computer wins the game with ${compScore} points! Better luck next time!`;
         modalTitle.textContent = "COMPUTER WON!"
     }else{
-        finalMessage = `🤝 It's a tie! Both you and the computer have ${userScore} points.`;
+        finalMessage = `🤝  It's a tie! Both you and the computer have ${userScore} points.`;
         modalTitle.textContent = "IT'S A TIE!"
     }
 
